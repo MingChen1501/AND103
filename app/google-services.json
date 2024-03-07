@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "404528231510",
+    "project_id": "and103-e20ef",
+    "storage_bucket": "and103-e20ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:404528231510:android:9a9b6ba57a40152fff37f7",
+        "android_client_info": {
+          "package_name": "org.minhtc.and103"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALKbncOoFWNi68AtKVIRb81F3fQ52i2uA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
