@@ -17,6 +17,12 @@ import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
     private List<Product> products = new ArrayList<>();
+    private OnProductClickListener listener;
+
+    public ProductAdapter(OnProductClickListener listener) {
+        this.listener = listener;
+    }
+
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,14 +46,24 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         this.products = products;
         notifyDataSetChanged();
     }
-    public class ProductViewHolder extends RecyclerView.ViewHolder {
+    public class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView textViewName;
         private TextView textViewPrice;
         public ProductViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewName = itemView.findViewById(R.id.txt_product_name);
             textViewPrice = itemView.findViewById(R.id.txt_product_price);
+            itemView.setOnClickListener(this::onClick);
 
+        }
+
+        @Override
+        public void onClick(View view) {
+            int position = getAdapterPosition();
+            if (position != RecyclerView.NO_POSITION && listener != null) {
+                Product product = products.get(position);
+                listener.onProductClick(product);
+            }
         }
     }
 }

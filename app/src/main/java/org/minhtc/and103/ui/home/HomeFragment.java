@@ -1,24 +1,36 @@
 package org.minhtc.and103.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.minhtc.and103.R;
+import org.minhtc.and103.data.model.Product;
 import org.minhtc.and103.data.repository.ProductRepository;
 import org.minhtc.and103.databinding.FragmentHomeBinding;
+import org.minhtc.and103.ui.dashboard.DashboardFragment;
+import org.minhtc.and103.ui.productDetail.ProductDetailViewModel;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements OnProductClickListener {
 
+
+    private static final String TAG = "HomeFragment";
     private FragmentHomeBinding binding;
+    private ProductDetailViewModel productDetailViewModel;
     private ProductAdapter productAdapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -29,20 +41,38 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         final RecyclerView recyclerView = binding.recyclerViewHome;
+        setupProductRecycleView(recyclerView);
+//        final TextView textView = binding.textHome;
+//        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+        return root;
+    }
+
+    private void setupProductRecycleView(RecyclerView recyclerView) {
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        productAdapter = new ProductAdapter();
+        productAdapter = new ProductAdapter(this::onProductClick);
         recyclerView.setAdapter(productAdapter);
         ProductRepository productRepository = new ProductRepository();
+        productDetailViewModel = new ViewModelProvider(requireActivity()).get(ProductDetailViewModel.class);
         productRepository.getProducts().observe(getViewLifecycleOwner(),
                 products -> productAdapter.setProducts(products));
-        final TextView textView = binding.textHome;
-        homeViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-        return root;
+
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        //set null to avoid memory leak
         binding = null;
+        productDetailViewModel = null;
+        productAdapter = null;
+    }
+
+    @Override
+    public void onProductClick(Product product) {
+        //cannot find action
+        productDetailViewModel.setProduct(product);
+        Navigation.findNavController(requireView()).navigate(R.id.action_navigation_home_to_navigation_product_detail);
+//        Toast.makeText(getContext(), product.getName(), Toast.LENGTH_SHORT).show();
+        Log.d(TAG, "onProductClick: " + product.getName() + " clicked!" );
     }
 }
