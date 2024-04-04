@@ -40,7 +40,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     @Override
     public int getItemCount() {
-        return products.size();
+        return products == null ? 0 : products.size();
     }
     public void setProducts(List<Product> products) {
         this.products = products;
