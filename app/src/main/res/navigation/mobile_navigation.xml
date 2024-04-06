@@ -47,15 +47,24 @@
         tools:layout="@layout/fragment_cart" >
         <action
             android:id="@+id/action_navigation_cart_to_navigation_cart_detail"
-            app:destination="@id/cartDetailFragment" />
+            app:destination="@id/navigation_cart_detail" />
     </fragment>
     <fragment
         android:id="@+id/navigation_settings"
         android:name="org.minhtc.and103.ui.setting.SettingsFragment"
         android:label="Cài đặt" />
     <fragment
-        android:id="@+id/cartDetailFragment"
+        android:id="@+id/navigation_cart_detail"
         android:name="org.minhtc.and103.ui.cart.detail.CartDetailFragment"
         android:label="Chi tiết giỏ hàng"
-        tools:layout="@layout/fragment_cart_detail" />
+        tools:layout="@layout/fragment_cart_detail" >
+        <action
+            android:id="@+id/action_navigation_cart_detail_to_navigation_create_order"
+            app:destination="@id/navigation_create_order" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_create_order"
+        android:name="org.minhtc.and103.ui.order.CreateOrderFragment"
+        android:label="Tạo đơn hàng"
+        tools:layout="@layout/fragment_create_order" />
 </navigation>

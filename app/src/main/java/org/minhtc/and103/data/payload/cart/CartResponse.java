@@ -1,4 +1,4 @@
-package org.minhtc.and103.data.payload.carts;
+package org.minhtc.and103.data.payload.cart;
 import org.minhtc.and103.data.model.CartItem;
 
 import java.util.List;

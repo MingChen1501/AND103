@@ -10,7 +10,7 @@ public class Product {
     private String brand;
     private List<String> categories;
     private List<String> images;
-    private List<ProductDetails> details;
+    private List<ProductDetail> details;
 
     public Product(String _id,
                    String name,
@@ -19,7 +19,7 @@ public class Product {
                    String brand,
                    List<String> categories,
                    List<String> images,
-                   List<ProductDetails> details) {
+                   List<ProductDetail> details) {
         this._id = _id;
         this.name = name;
         this.description = description;
@@ -89,11 +89,11 @@ public class Product {
         this.images = images;
     }
 
-    public List<ProductDetails> getDetails() {
+    public List<ProductDetail> getDetails() {
         return details;
     }
 
-    public void setDetails(List<ProductDetails> details) {
+    public void setDetails(List<ProductDetail> details) {
         this.details = details;
     }
 

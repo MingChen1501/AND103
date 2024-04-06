@@ -1,13 +1,13 @@
 package org.minhtc.and103.data.model;
 
-public class ProductDetails {
+public class ProductDetail {
     private String _id;
     private String color;
     private String size;
     private int stock;
     private double price;
 
-    public ProductDetails(String _id, String color, String size, int stock, double price) {
+    public ProductDetail(String _id, String color, String size, int stock, double price) {
         this._id = _id;
         this.color = color;
         this.size = size;
@@ -15,7 +15,7 @@ public class ProductDetails {
         this.price = price;
     }
 
-    public ProductDetails() {
+    public ProductDetail() {
     }
 
     public String get_id() {

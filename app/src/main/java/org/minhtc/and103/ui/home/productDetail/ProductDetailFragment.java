@@ -23,7 +23,7 @@ import android.widget.TextView;
 import org.minhtc.and103.R;
 import org.minhtc.and103.data.model.CartItem;
 import org.minhtc.and103.data.model.Product;
-import org.minhtc.and103.data.model.ProductDetails;
+import org.minhtc.and103.data.model.ProductDetail;
 import org.minhtc.and103.databinding.FragmentProductDetailBinding;
 
 import java.util.ArrayList;
@@ -122,16 +122,16 @@ public class ProductDetailFragment extends Fragment implements Button.OnClickLis
                 RadioButton checkedRadioButton = group.findViewById(checkedId);
                 checkedColor[1] = checkedRadioButton.getText().toString();
                 product.getDetails().stream()
-                        .filter(productDetails -> productDetails.getColor().equals(checkedColor[0]) && productDetails.getSize().equals(checkedColor[1]))
-                        .findFirst().ifPresent(productDetails -> {
-                            txtPrice.setText(String.valueOf(productDetails.getPrice()) + " VND");
-                            txtStock.setText(String.valueOf("Còn lại " + productDetails.getStock() + " sản phẩm"));
-                            txtStock.setTag(productDetails.getStock());
+                        .filter(productDetail -> productDetail.getColor().equals(checkedColor[0]) && productDetail.getSize().equals(checkedColor[1]))
+                        .findFirst().ifPresent(productDetail -> {
+                            txtPrice.setText(String.valueOf(productDetail.getPrice()) + " VND");
+                            txtStock.setText(String.valueOf("Còn lại " + productDetail.getStock() + " sản phẩm"));
+                            txtStock.setTag(productDetail.getStock());
                             InputFilter[] filterArray = new InputFilter[1];
                             filterArray[0] = new InputFilter.LengthFilter(2);
                             edtQuantity.setFilters(filterArray);
                             cartItem.setProductId(product.get_id());
-                            cartItem.setProductDetailId(productDetails.get_id());
+                            cartItem.setProductDetailId(productDetail.get_id());
                         });
                 Log.d(TAG, "onCreateView: " + checkedColor[0] + " " + checkedColor[1]);
             });
@@ -142,8 +142,8 @@ public class ProductDetailFragment extends Fragment implements Button.OnClickLis
     }
 
     private boolean isSizeAvailable(Product product, String size, String color) {
-        List<ProductDetails> details = product.getDetails();
-        for (ProductDetails detail : details) {
+        List<ProductDetail> details = product.getDetails();
+        for (ProductDetail detail : details) {
           if (detail.getColor().equals(color) && detail.getSize().equals(size) && detail.getStock() > 0) {
                 return true;
             }
@@ -153,19 +153,19 @@ public class ProductDetailFragment extends Fragment implements Button.OnClickLis
 
 
     private Set<String> getSizes(Product product) {
-        List<ProductDetails> details = product.getDetails();
+        List<ProductDetail> details = product.getDetails();
         Set<String> sizes = new HashSet<>();
-        details.forEach(productDetails -> {
-            sizes.add(productDetails.getSize());
+        details.forEach(productDetail -> {
+            sizes.add(productDetail.getSize());
         });
         return sizes;
     }
 
     private Set<String> getColors(Product product) {
-        List<ProductDetails> details = product.getDetails();
+        List<ProductDetail> details = product.getDetails();
         Set<String> colors = new HashSet<>();
-        details.forEach(productDetails -> {
-            colors.add(productDetails.getColor());
+        details.forEach(productDetail -> {
+            colors.add(productDetail.getColor());
         });
         return colors;
     }
