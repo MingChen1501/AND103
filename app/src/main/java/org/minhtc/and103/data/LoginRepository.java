@@ -6,6 +6,7 @@ import org.minhtc.and103.data.model.LoggedInUser;
  * Class that requests authentication and user information from the remote data source and
  * maintains an in-memory cache of login status and user credentials information.
  */
+@Deprecated
 public class LoginRepository {
 
     private static volatile LoginRepository instance;

@@ -11,6 +11,7 @@ import org.minhtc.and103.data.Result;
 import org.minhtc.and103.data.model.LoggedInUser;
 import org.minhtc.and103.R;
 
+@Deprecated
 public class LoginViewModel extends ViewModel {
 
     private MutableLiveData<LoginFormState> loginFormState = new MutableLiveData<>();

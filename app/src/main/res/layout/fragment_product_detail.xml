@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.productDetail.ProductDetailFragment">
+    tools:context=".ui.home.productDetail.ProductDetailFragment">
 
     <!-- Product name -->
     <TextView
@@ -53,13 +53,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
         android:orientation="horizontal">
-
-        <!-- Radio buttons for color will be added programmatically -->
-        <RadioButton
-            android:id="@+id/radio_color_red"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Red" />
     </RadioGroup>
 
     <!-- Size radio group -->
@@ -72,22 +65,36 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
         android:orientation="horizontal">
-        <RadioButton
-            android:id="@+id/radio_size_small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Small" />
-        <!-- Radio buttons for size will be added programmatically -->
 
     </RadioGroup>
 
+    <TextView
+        android:id="@+id/text_product_stock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Product detail stock"
+        app:layout_constraintTop_toBottomOf="@+id/radio_group_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="16dp" />
+    <!-- Quantity -->
+    <EditText
+        android:id="@+id/edit_text_quantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/text_product_stock"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:inputType="number"
+        android:text="1"
+        android:autofillHints="Số lượng muốn mua" />
     <!-- Add to Cart button -->
     <Button
         android:id="@+id/button_add_to_cart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add to Cart"
-        app:layout_constraintTop_toBottomOf="@+id/radio_group_size"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text_quantity"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp" />

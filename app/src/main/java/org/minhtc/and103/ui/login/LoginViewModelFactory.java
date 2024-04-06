@@ -11,6 +11,7 @@ import org.minhtc.and103.data.LoginRepository;
  * ViewModel provider factory to instantiate LoginViewModel.
  * Required given LoginViewModel has a non-empty constructor
  */
+@Deprecated
 public class LoginViewModelFactory implements ViewModelProvider.Factory {
 
     @NonNull
